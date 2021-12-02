@@ -74,7 +74,8 @@ public class class92 {
 		descriptor = "(I)Lib;",
 		garbageValue = "1939473389"
 	)
-	public static PacketBufferNode method2296() {
+	@Export("newPacketBufferNode")
+	public static PacketBufferNode newPacketBufferNode() {
 		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 22 23
 	}
 

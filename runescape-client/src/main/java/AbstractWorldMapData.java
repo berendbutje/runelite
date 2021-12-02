@@ -1,9 +1,6 @@
+import net.runelite.mapping.*;
+
 import java.util.LinkedList;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gl")
 @Implements("AbstractWorldMapData")
@@ -240,7 +237,7 @@ public abstract class AbstractWorldMapData {
 	)
 	@Export("getPacketBufferNode")
 	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2 = class92.method2296(); // L: 27
+		PacketBufferNode var2 = class92.newPacketBufferNode(); // L: 27
 		var2.clientPacket = var0; // L: 28
 		var2.clientPacketLength = var0.length; // L: 29
 		if (var2.clientPacketLength == -1) { // L: 30

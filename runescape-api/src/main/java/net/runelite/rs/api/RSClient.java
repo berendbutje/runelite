@@ -24,20 +24,41 @@
  */
 package net.runelite.rs.api;
 
-import java.math.BigInteger;
-import java.util.Map;
-import net.runelite.api.AmbientSoundEffect;
-import net.runelite.api.Client;
-import net.runelite.api.Deque;
-import net.runelite.api.SpritePixels;
-import net.runelite.api.World;
+import net.runelite.api.*;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.widgets.Widget;
 import net.runelite.mapping.Construct;
 import net.runelite.mapping.Import;
 
+import java.math.BigInteger;
+import java.util.Map;
+
 public interface RSClient extends RSGameEngine, Client
 {
+	@Import("packetWriter")
+	RSPacketWriter getPacketWriter();
+
+	@Override
+	@Import("MouseHandler_lastButtonVolatile")
+	int getLastMouseButton();
+
+	@Import("MouseHandler_lastButtonVolatile")
+	void setLastMouseButton(int button);
+
+	@Override
+	@Import("MouseHandler_lastPressedXVolatile")
+	int getLastMouseX();
+
+	@Import("MouseHandler_lastPressedXVolatile")
+	void setLastMouseX(int x);
+
+	@Override
+	@Import("MouseHandler_lastPressedYVolatile")
+	int getLastMouseY();
+
+	@Import("MouseHandler_lastPressedYVolatile")
+	void setLastMouseY(int y);
+
 	@Import("cameraX")
 	@Override
 	int getCameraX();
@@ -417,8 +438,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("getItemSprite")
 	RSSpritePixels createRSItemSprite(int itemId, int quantity, int thickness, int borderColor, int stackable, boolean noted);
 
+	@Override
 	@Import("menuAction")
-	void sendMenuAction(int n2, int n3, int n4, int n5, String string, String string2, int n6, int n7);
+	void sendMenuAction(int param0, int param1, int action, int objectId, String target, String target2, int mouseX, int mouseY);
 
 	@Import("SpriteBuffer_decode")
 	void decodeSprite(byte[] data);

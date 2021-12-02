@@ -251,10 +251,10 @@ public class UrlRequester implements Runnable {
 					Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3; // L: 2047
 					return 1; // L: 2048
 				} else if (var0 == 3326) { // L: 2050
-					Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.field475; // L: 2051
+					Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.previousX; // L: 2051
 					return 1; // L: 2052
 				} else if (var0 == 3327) { // L: 2054
-					Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.field476; // L: 2055
+					Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.previousY; // L: 2055
 					return 1; // L: 2056
 				} else {
 					return 2; // L: 2058

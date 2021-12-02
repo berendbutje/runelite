@@ -238,6 +238,8 @@ public enum MenuAction
 	 */
 	PRIO_RUNELITE(666),
 
+	PRIO_GGBOT(PRIO_RUNELITE.getId() + 137),
+
 	/**
 	 * Menu action triggered by examining an object.
 	 */

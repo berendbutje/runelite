@@ -24,39 +24,17 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.Actor;
-import net.runelite.api.Hitsplat;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Perspective;
-import net.runelite.api.Player;
 import net.runelite.api.Point;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ActorDeath;
-import net.runelite.api.events.AnimationChanged;
-import net.runelite.api.events.HitsplatApplied;
-import net.runelite.api.events.HealthBarUpdated;
-import net.runelite.api.events.GraphicChanged;
-import net.runelite.api.events.InteractingChanged;
-import net.runelite.api.events.OverheadTextChanged;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
+import net.runelite.api.events.*;
+import net.runelite.api.mixins.*;
+import net.runelite.rs.api.*;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSActor;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSHealthBar;
-import net.runelite.rs.api.RSHealthBarDefinition;
-import net.runelite.rs.api.RSHealthBarUpdate;
-import net.runelite.rs.api.RSIterableNodeDeque;
-import net.runelite.rs.api.RSNode;
 
 @Mixin(RSActor.class)
 public abstract class RSActorMixin implements RSActor
@@ -66,6 +44,21 @@ public abstract class RSActorMixin implements RSActor
 
 	@Inject
 	private boolean dead;
+
+	@Inject
+	@Override
+	public Tile[] getPath() {
+		Tile[] result = new Tile[getPathLength()];
+
+		for(int i = 0; i < getPathLength(); i++) {
+			int sceneX = getPathX()[i];
+			int sceneY = getPathY()[i];
+
+			result[i] = client.getScene().getTiles()[client.getPlane()][sceneX][sceneY];
+		}
+
+		return result;
+	}
 
 	@Inject
 	@Override

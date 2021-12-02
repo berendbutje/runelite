@@ -24,15 +24,6 @@
  */
 package net.runelite.api;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.math.BigInteger;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import net.runelite.api.annotations.VisibleForExternalPlugins;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanSettings;
@@ -46,11 +37,28 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import org.slf4j.Logger;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.math.BigInteger;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Represents the RuneScape client.
  */
 public interface Client extends GameEngine
 {
+	PacketWriter getPacketWriter();
+
+	int getLastMouseX();
+	int getLastMouseY();
+	int getLastMouseButton();
+
+	void sendMenuAction(int param0, int param1, int action, int objectId, String target, String target2, int mouseX, int mouseY);
+
 	/**
 	 * The injected client invokes these callbacks to send events to us
 	 */

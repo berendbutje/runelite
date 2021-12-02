@@ -1,9 +1,6 @@
+import net.runelite.mapping.*;
+
 import java.math.BigInteger;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("op")
 @Implements("Buffer")
@@ -251,9 +248,9 @@ public class Buffer extends Node {
 		garbageValue = "1668528908"
 	)
 	@Export("writeBytes")
-	public void writeBytes(byte[] var1, int var2, int var3) {
-		for (int var4 = var2; var4 < var3 + var2; ++var4) { // L: 192
-			this.array[++this.offset - 1] = var1[var4];
+	public void writeBytes(byte[] payload, int start, int end) {
+		for (int var4 = start; var4 < end + start; ++var4) { // L: 192
+			this.array[++this.offset - 1] = payload[var4];
 		}
 
 	} // L: 193
@@ -304,7 +301,8 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "-1322948126"
 	)
-	public void method6963(int var1) {
+	@Export("setByteAtMinusOffset")
+	public void setByteAtMinusOffset(int var1) {
 		if (var1 >= 0 && var1 <= 255) { // L: 218
 			this.array[this.offset - var1 - 1] = (byte)var1; // L: 221
 		} else {

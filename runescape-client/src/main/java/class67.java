@@ -1,8 +1,9 @@
-import java.math.BigInteger;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+
+import java.math.BigInteger;
 
 @ObfuscatedName("bz")
 public class class67 {
@@ -84,7 +85,7 @@ public class class67 {
 		descriptor = "(II)V",
 		garbageValue = "621915998"
 	)
-	static final void method1913(int var0) {
+	static final void executeMenuAction(int var0) {
 		if (var0 >= 0) { // L: 8261
 			int var1 = Client.menuArguments1[var0]; // L: 8262
 			int var2 = Client.menuArguments2[var0]; // L: 8263

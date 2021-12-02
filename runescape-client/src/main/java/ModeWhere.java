@@ -1,11 +1,8 @@
-import java.awt.Component;
+import net.runelite.mapping.*;
+
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ks")
 @Implements("ModeWhere")
@@ -148,7 +145,7 @@ public enum ModeWhere implements MouseWheel {
 		descriptor = "(B)V",
 		garbageValue = "95"
 	)
-	public static void method5542() {
+	public static void copyMouseValues() {
 		synchronized(MouseHandler.MouseHandler_instance) { // L: 52
 			MouseHandler.MouseHandler_currentButton = MouseHandler.MouseHandler_currentButtonVolatile; // L: 53
 			MouseHandler.MouseHandler_x = MouseHandler.MouseHandler_xVolatile; // L: 54

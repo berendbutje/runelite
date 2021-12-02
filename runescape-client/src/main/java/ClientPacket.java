@@ -121,7 +121,7 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2686;
+	public static final ClientPacket DISCONNECT;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -211,7 +211,8 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2704;
+	@Export("PACKET_OPCODE_40")
+	public static final ClientPacket MOUSE_HEURISTICS;
 	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -286,7 +287,7 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2719;
+	public static final ClientPacket MAYBE_AFK;
 	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -316,7 +317,8 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2725;
+	@Export("packetOpcode61")
+	public static final ClientPacket MOUSE_CLICK;
 	@ObfuscatedName("br")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -411,7 +413,8 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2744;
+	@Export("PACKET_OPCODE_80")
+	public static final ClientPacket OPCODE_80;
 	@ObfuscatedName("ci")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -461,12 +464,14 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2664;
+	@Export("PACKET_OPCODE_90")
+	public static final ClientPacket OPCODE_90;
 	@ObfuscatedName("cg")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2751;
+	@Export("PACKET_OPCODE_91")
+	public static final ClientPacket OPCODE_91;
 	@ObfuscatedName("cw")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -573,7 +578,7 @@ public class ClientPacket implements class238 {
 		field2683 = new ClientPacket(19, 8); // L: 24
 		field2699 = new ClientPacket(20, 4); // L: 25
 		field2685 = new ClientPacket(21, 2); // L: 26
-		field2686 = new ClientPacket(22, 8); // L: 27
+		DISCONNECT = new ClientPacket(22, 8); // L: 27
 		field2687 = new ClientPacket(23, 3); // L: 28
 		field2688 = new ClientPacket(24, 13); // L: 29
 		field2689 = new ClientPacket(25, 8); // L: 30
@@ -591,7 +596,7 @@ public class ClientPacket implements class238 {
 		field2722 = new ClientPacket(37, 11); // L: 42
 		field2739 = new ClientPacket(38, 4); // L: 43
 		field2665 = new ClientPacket(39, 8); // L: 44
-		field2704 = new ClientPacket(40, -1); // L: 45
+		MOUSE_HEURISTICS = new ClientPacket(40, -1); // L: 45
 		field2705 = new ClientPacket(41, 7); // L: 46
 		field2694 = new ClientPacket(42, 8); // L: 47
 		field2702 = new ClientPacket(43, 16); // L: 48
@@ -606,13 +611,13 @@ public class ClientPacket implements class238 {
 		field2716 = new ClientPacket(52, -2); // L: 57
 		field2717 = new ClientPacket(53, 3); // L: 58
 		field2718 = new ClientPacket(54, 8); // L: 59
-		field2719 = new ClientPacket(55, 0); // L: 60
+		MAYBE_AFK = new ClientPacket(55, 0); // L: 60
 		field2720 = new ClientPacket(56, 4); // L: 61
 		field2721 = new ClientPacket(57, -1); // L: 62
 		field2695 = new ClientPacket(58, 14); // L: 63
 		field2723 = new ClientPacket(59, 3); // L: 64
 		field2724 = new ClientPacket(60, -2); // L: 65
-		field2725 = new ClientPacket(61, 6); // L: 66
+		MOUSE_CLICK = new ClientPacket(61, 6); // L: 66
 		field2726 = new ClientPacket(62, 0); // L: 67
 		field2727 = new ClientPacket(63, 16); // L: 68
 		field2761 = new ClientPacket(64, 6); // L: 69
@@ -631,7 +636,7 @@ public class ClientPacket implements class238 {
 		field2741 = new ClientPacket(77, 11); // L: 82
 		field2742 = new ClientPacket(78, 0); // L: 83
 		field2743 = new ClientPacket(79, 1); // L: 84
-		field2744 = new ClientPacket(80, 7); // L: 85
+		OPCODE_80 = new ClientPacket(80, 7); // L: 85
 		field2728 = new ClientPacket(81, 3); // L: 86
 		field2670 = new ClientPacket(82, 8); // L: 87
 		field2747 = new ClientPacket(83, -1); // L: 88
@@ -641,8 +646,8 @@ public class ClientPacket implements class238 {
 		field2746 = new ClientPacket(87, -1); // L: 92
 		field2752 = new ClientPacket(88, -1); // L: 93
 		field2753 = new ClientPacket(89, 16); // L: 94
-		field2664 = new ClientPacket(90, 7); // L: 95
-		field2751 = new ClientPacket(91, 8); // L: 96
+		OPCODE_90 = new ClientPacket(90, 7); // L: 95
+		OPCODE_91 = new ClientPacket(91, 8); // L: 96
 		field2756 = new ClientPacket(92, 15); // L: 97
 		field2706 = new ClientPacket(93, 8); // L: 98
 		field2740 = new ClientPacket(94, 8); // L: 99

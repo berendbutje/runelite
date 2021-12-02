@@ -145,7 +145,7 @@ public class class383 {
 			var4.packetBuffer.writeByte(var3); // L: 169
 		}
 
-		var4.packetBuffer.method6963(var4.packetBuffer.offset - var5); // L: 171
+		var4.packetBuffer.setByteAtMinusOffset(var4.packetBuffer.offset - var5); // L: 171
 		return var4; // L: 172
 	}
 

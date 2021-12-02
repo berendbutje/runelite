@@ -24,21 +24,22 @@
  */
 package net.runelite.api;
 
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Shape;
-import java.awt.image.BufferedImage;
-import javax.annotation.Nullable;
 import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
+
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Represents a RuneScape actor/entity.
  */
 public interface Actor extends Renderable, Locatable
 {
+	Tile[] getPath();
+
 	/**
 	 * Gets the combat level of the actor.
 	 *
