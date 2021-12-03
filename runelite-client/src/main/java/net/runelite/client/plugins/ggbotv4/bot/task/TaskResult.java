@@ -1,29 +1,30 @@
 package net.runelite.client.plugins.ggbotv4.bot.task;
 
 import lombok.Getter;
-import net.runelite.client.plugins.ggbotv4.bot.action.ActionError;
 
 public class TaskResult {
-    public static final TaskResult OK = new TaskResult(null);
-    public static final TaskResult FINISHED = new TaskResult(null);
-
     @Getter
-    private ActionError error;
+    private final Task next;
+    @Getter
+    private final TaskError error;
 
-    public TaskResult(ActionError error) {
+    public TaskResult(Task next, TaskError error) {
+        this.next = next;
         this.error = error;
     }
 
-    public static final TaskResult of(ActionError error) {
-        return new TaskResult(error);
+    public static TaskResult fatalError(TaskError error) {
+        return new TaskResult(null, error);
+    }
+    public static TaskResult finished() {
+        return new TaskResult(null, null);
+    }
+    public static TaskResult continueAfter(Task next) {
+        return new TaskResult(next, null);
     }
 
-    public boolean isOk() {
-        return error == ActionError.OK;
-    }
-
+    public boolean isFinished() { return this.next == null && this.error == null; }
     public boolean isError() {
-        return error != ActionError.OK;
+        return error != null;
     }
-
 }

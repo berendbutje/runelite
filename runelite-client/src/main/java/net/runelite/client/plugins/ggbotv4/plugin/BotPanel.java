@@ -46,8 +46,8 @@ class BotPanel extends PluginPanel
 	private BotPanel(
 		Client client,
 		ClientThread clientThread,
-		BotPlugin plugin)
-	{
+		BotPlugin plugin
+	) {
 		super();
 		this.client = client;
 		this.clientThread = clientThread;
@@ -64,19 +64,19 @@ class BotPanel extends PluginPanel
 		container.setBackground(ColorScheme.DARK_GRAY_COLOR);
 		container.setLayout(new GridLayout(0, 2, 3, 3));
 
-		final JButton buttonAction = new JButton("Action");
-		buttonAction.addActionListener(ev -> {
-			plugin.onActionClick();
-		});
+//		final JButton buttonAction = new JButton("Action");
+//		buttonAction.addActionListener(ev -> {
+//			plugin.onActionClick();
+//		});
+//
+//		container.add(buttonAction);
+//
+//		final JButton buttonBankTest = new JButton("Bank Test");
+//		buttonBankTest.addActionListener(ev -> {
+//			plugin.onBankTestClick();
+//		});
 
-		container.add(buttonAction);
-
-		final JButton buttonBankTest = new JButton("Bank Test");
-		buttonBankTest.addActionListener(ev -> {
-			plugin.onBankTestClick();
-		});
-
-		container.add(buttonBankTest);
+//		container.add(buttonBankTest);
 
 		return container;
 	}

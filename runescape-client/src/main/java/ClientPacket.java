@@ -408,7 +408,7 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2743;
+	public static final ClientPacket HAS_FOCUS;
 	@ObfuscatedName("ck")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -635,7 +635,7 @@ public class ClientPacket implements class238 {
 		field2671 = new ClientPacket(76, 8); // L: 81
 		field2741 = new ClientPacket(77, 11); // L: 82
 		field2742 = new ClientPacket(78, 0); // L: 83
-		field2743 = new ClientPacket(79, 1); // L: 84
+		HAS_FOCUS = new ClientPacket(79, 1); // L: 84
 		OPCODE_80 = new ClientPacket(80, 7); // L: 85
 		field2728 = new ClientPacket(81, 3); // L: 86
 		field2670 = new ClientPacket(82, 8); // L: 87

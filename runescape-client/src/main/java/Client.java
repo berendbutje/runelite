@@ -4116,14 +4116,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 						if (WorldMapSectionType.hasFocus && !hadFocus) { // L: 3468
 							hadFocus = true; // L: 3469
-							var14 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2743, packetWriter.isaacCipher); // L: 3471
+							var14 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.HAS_FOCUS, packetWriter.isaacCipher); // L: 3471
 							var14.packetBuffer.writeByte(1); // L: 3472
 							packetWriter.addNode(var14); // L: 3473
 						}
 
 						if (!WorldMapSectionType.hasFocus && hadFocus) { // L: 3475
 							hadFocus = false; // L: 3476
-							var14 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2743, packetWriter.isaacCipher); // L: 3478
+							var14 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.HAS_FOCUS, packetWriter.isaacCipher); // L: 3478
 							var14.packetBuffer.writeByte(0); // L: 3479
 							packetWriter.addNode(var14); // L: 3480
 						}

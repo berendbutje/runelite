@@ -26,8 +26,9 @@
  */
 package net.runelite.client.plugins.ggbotv4.plugin;
 
+import net.runelite.api.Client;
+import net.runelite.api.GameObject;
 import net.runelite.api.Point;
-import net.runelite.api.*;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.ggbotv4.util.Axe;
 import net.runelite.client.plugins.ggbotv4.util.TreeType;
@@ -36,7 +37,6 @@ import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.ColorUtil;
-import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -49,8 +49,6 @@ class GameObjectsOverlay extends Overlay
 	private final ItemManager itemManager;
 	private final BotPlugin plugin;
 
-	private final BufferedImage nopeIcon;
-
 	@Inject
 	private GameObjectsOverlay(final Client client, final BotConfig config, final ItemManager itemManager, final BotPlugin plugin)
 	{
@@ -60,27 +58,21 @@ class GameObjectsOverlay extends Overlay
 		this.plugin = plugin;
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		setPosition(OverlayPosition.DYNAMIC);
-
-		nopeIcon = ImageUtil.loadImageResource(getClass(), "nope_icon.png");
 	}
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if(plugin.getStartPosition() != null) {
-			OverlayUtil.renderLocalPoint(client, graphics, plugin.getStartPosition(), Color.YELLOW);
+		if(plugin.getScript() != null) {
+			plugin.getScript().renderDebug(graphics, plugin);
 		}
 
-		if(plugin.getTreeTarget() != null) {
-			OverlayUtil.renderTileOverlay(graphics, plugin.getTreeTarget(), "Current target", Color.GREEN);
-		}
-
-		BufferedImage axeIcon;
+		final BufferedImage axeIcon;
 		Axe axe = Axe.findActive(client);
 		if(axe != null) {
 			axeIcon = itemManager.getImage(axe.getItemId());
 		} else {
-			axeIcon = nopeIcon;
+			axeIcon = null;
 		}
 
 		if(plugin.getBankTarget() != null) {
@@ -100,7 +92,9 @@ class GameObjectsOverlay extends Overlay
 
 			if (treeObject.getWorldLocation().distanceTo(client.getLocalPlayer().getWorldLocation()) <= 12)
 			{
-				OverlayUtil.renderImageLocation(client, graphics, treeObject.getLocalLocation(), axeIcon, 120);
+				if(axeIcon != null) {
+					OverlayUtil.renderImageLocation(client, graphics, treeObject.getLocalLocation(), axeIcon, 120);
+				}
 
 				Shape poly = treeObject.getConvexHull();
 				if(poly != null) {

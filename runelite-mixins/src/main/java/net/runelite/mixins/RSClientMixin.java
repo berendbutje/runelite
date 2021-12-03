@@ -56,6 +56,13 @@ import static net.runelite.mixins.CameraMixin.*;
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
 {
+	@FieldHook("hasFocus")
+	@Inject
+	static void onHasFocusChanged(int idx) {
+		// Always report the client it has focus, so it doesn't snitch on us.
+		client.setHasFocus(true);
+	}
+
 	@Shadow("client")
 	private static RSClient client;
 

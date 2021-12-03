@@ -287,6 +287,8 @@ public enum MenuAction
 	 */
 	RUNELITE_INFOBOX(1504),
 
+	GGBOT(RUNELITE.getId() + 37),
+
 	FOLLOW(2046),
 	TRADE(2047),
 

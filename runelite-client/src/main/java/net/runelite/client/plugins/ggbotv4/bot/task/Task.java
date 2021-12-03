@@ -1,45 +1,28 @@
 package net.runelite.client.plugins.ggbotv4.bot.task;
 
-import net.runelite.client.plugins.ggbotv4.bot.action.Action;
-import net.runelite.client.plugins.ggbotv4.bot.action.ActionAsync;
-import net.runelite.client.plugins.ggbotv4.bot.action.ActionError;
+import net.runelite.client.plugins.ggbotv4.plugin.BotPlugin;
 
 import java.util.List;
 
-public class Task {
-    private final List<Action> actions;
+public interface Task {
+    TaskResult evaluate(BotPlugin bot);
 
-    public Task(Action... actions) {
-        this.actions = List.of(actions);
+    static Task of(final List<Task> tasks) {
+        return new Task() {
+            private List<Task> taskList = tasks;
+
+            @Override
+            public TaskResult evaluate(BotPlugin bot) {
+                if(!taskList.isEmpty()) {
+                    return TaskResult.continueAfter(taskList.remove(0));
+                }
+
+                return TaskResult.finished();
+            }
+        };
     }
 
-    public TaskResult run() {
-        while(!actions.isEmpty()) {
-            Action action = actions.get(0);
-            // Execute all asynchronous actions until a sync action comes along.
-            if(action instanceof ActionAsync) {
-                ActionError error = action.run();
-                if(error != ActionError.OK) {
-                    return TaskResult.of(error);
-                } else {
-                    actions.remove(0);
-                }
-            } else {
-                // Sync action, wait till it's done.
-                if(!action.isStarted()) {
-                    ActionError error = action.run();
-                    if(error != ActionError.OK) {
-                        return TaskResult.of(error);
-                    }
-                } else if(action.isFinished()) {
-                    actions.remove(0);
-                } else {
-                    // Wait till task is done.
-                    return TaskResult.OK;
-                }
-            }
-        }
-
-        return TaskResult.FINISHED;
+    static Task of(Task... tasks) {
+        return of(List.of(tasks));
     }
 }

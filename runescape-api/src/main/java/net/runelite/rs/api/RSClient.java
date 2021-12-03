@@ -35,6 +35,13 @@ import java.util.Map;
 
 public interface RSClient extends RSGameEngine, Client
 {
+	@Override
+	@Import("hasFocus")
+	boolean hasFocus();
+
+	@Import("hasFocus")
+	void setHasFocus(boolean focus);
+
 	@Import("packetWriter")
 	RSPacketWriter getPacketWriter();
 

@@ -51,6 +51,8 @@ import java.util.Set;
  */
 public interface Client extends GameEngine
 {
+	boolean hasFocus();
+
 	PacketWriter getPacketWriter();
 
 	int getLastMouseX();
