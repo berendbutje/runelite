@@ -28,8 +28,12 @@ package net.runelite.client.plugins.ggbotv4.plugin;
 
 import net.runelite.api.Client;
 import net.runelite.api.GameObject;
+import net.runelite.api.Player;
 import net.runelite.api.Point;
 import net.runelite.client.game.ItemManager;
+import net.runelite.client.plugins.ggbotv4.bot.Bot;
+import net.runelite.client.plugins.ggbotv4.bot.GameObjectManager;
+import net.runelite.client.plugins.ggbotv4.bot.scripts.IdleScript;
 import net.runelite.client.plugins.ggbotv4.util.Axe;
 import net.runelite.client.plugins.ggbotv4.util.TreeType;
 import net.runelite.client.ui.overlay.Overlay;
@@ -63,8 +67,11 @@ class GameObjectsOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if(plugin.getScript() != null) {
-			plugin.getScript().renderDebug(graphics, plugin);
+		final Bot bot = plugin.getBot();
+		final GameObjectManager gameObjects = bot.getGameObjects();
+
+		if(bot.getScript() != null) {
+			bot.getScript().renderDebug(graphics, bot);
 		}
 
 		final BufferedImage axeIcon;
@@ -75,17 +82,19 @@ class GameObjectsOverlay extends Overlay
 			axeIcon = null;
 		}
 
-		if(plugin.getBankTarget() != null) {
-			Shape poly = plugin.getBankTarget().getConvexHull();
+		if(gameObjects.get(bot.getBankTarget()) != null) {
+			GameObject bank = gameObjects.get(bot.getBankTarget());
+
+			Shape poly = bank.getConvexHull();
 			if(poly != null) {
 				OverlayUtil.renderPolygon(graphics, poly, Color.YELLOW);
 			}
 
 			BufferedImage stacksOfMoney = itemManager.getImage(8899);
-			OverlayUtil.renderImageLocation(client, graphics, plugin.getBankTarget().getLocalLocation(), stacksOfMoney, 120);
+			OverlayUtil.renderImageLocation(client, graphics, bank.getLocalLocation(), stacksOfMoney, 120);
 		}
 
-		for (GameObject treeObject : plugin.getTreeObjects().values())
+		for (GameObject treeObject : gameObjects.values())
 		{
 			if(TreeType.of(treeObject.getId()) == null)
 				continue;
@@ -107,6 +116,18 @@ class GameObjectsOverlay extends Overlay
 					Point point = treeObject.getCanvasTextLocation(graphics, text, 75);
 					if (point != null) {
 						OverlayUtil.renderTextLocation(graphics, point, text, Color.RED);
+					}
+				}
+			}
+
+			if(bot.getScript() != null && !(bot.getScript() instanceof IdleScript)) {
+				for(Player player : client.getPlayers()) {
+					if(player != client.getLocalPlayer()) {
+						OverlayUtil.renderActorOverlay(graphics, player, "POSSIBLE REPORTER", Color.RED);
+					} else {
+						BotState state = bot.getState();
+
+						OverlayUtil.renderActorOverlay(graphics, player, "Animation: " + (state != BotState.Unknown ? state.name() : player.getAnimation()), Color.WHITE);
 					}
 				}
 			}

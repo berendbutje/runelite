@@ -1,11 +1,8 @@
+import net.runelite.mapping.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gi")
 @Implements("WorldMapData_1")
@@ -160,7 +157,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 		descriptor = "(I)V",
 		garbageValue = "1064426552"
 	)
-	static void method3844() {
+	@Export("createRandomDat")
+	static void createRandomDat() {
 		try {
 			File var0 = new File(TriBool.userHomeDirectory, "random.dat"); // L: 248
 			int var2;

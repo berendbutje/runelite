@@ -64,19 +64,12 @@ class BotPanel extends PluginPanel
 		container.setBackground(ColorScheme.DARK_GRAY_COLOR);
 		container.setLayout(new GridLayout(0, 2, 3, 3));
 
-//		final JButton buttonAction = new JButton("Action");
-//		buttonAction.addActionListener(ev -> {
-//			plugin.onActionClick();
-//		});
-//
-//		container.add(buttonAction);
-//
-//		final JButton buttonBankTest = new JButton("Bank Test");
-//		buttonBankTest.addActionListener(ev -> {
-//			plugin.onBankTestClick();
-//		});
+		final JButton buttonBankTest = new JButton("Test");
+		buttonBankTest.addActionListener(ev -> {
+			plugin.onTestClick();
+		});
 
-//		container.add(buttonBankTest);
+		container.add(buttonBankTest);
 
 		return container;
 	}

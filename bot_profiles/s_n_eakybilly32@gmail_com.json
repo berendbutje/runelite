@@ -1,0 +1,203 @@
+{
+  "username": "s.n.eakybilly32@gmail.com",
+  "randomDat": "iOJQDM5HgPTN5SkpojNPKEYPDbNau+cY",
+  "blocked": false,
+  "locked": false,
+  "lastLogin": {
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 7
+    },
+    "time": {
+      "hour": 16,
+      "minute": 17,
+      "second": 51,
+      "nano": 379401400
+    }
+  },
+  "lastLogout": {
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 7
+    },
+    "time": {
+      "hour": 13,
+      "minute": 57,
+      "second": 45,
+      "nano": 462194700
+    }
+  },
+  "sessions": [
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 8,
+          "second": 0,
+          "nano": 145292400
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 8,
+          "second": 4,
+          "nano": 906406800
+        }
+      }
+    ],
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 8,
+          "second": 9,
+          "nano": 925453000
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 8,
+          "second": 40,
+          "nano": 392476000
+        }
+      }
+    ],
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 50,
+          "second": 35,
+          "nano": 278403200
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 50,
+          "second": 48,
+          "nano": 429227100
+        }
+      }
+    ],
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 50,
+          "second": 54,
+          "nano": 117936000
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 51,
+          "second": 15,
+          "nano": 978719700
+        }
+      }
+    ],
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 51,
+          "second": 20,
+          "nano": 958033000
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 52,
+          "second": 42,
+          "nano": 379304400
+        }
+      }
+    ],
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 52,
+          "second": 47,
+          "nano": 938071600
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 7
+        },
+        "time": {
+          "hour": 13,
+          "minute": 57,
+          "second": 45,
+          "nano": 462194700
+        }
+      }
+    ]
+  ],
+  "world": 308
+}

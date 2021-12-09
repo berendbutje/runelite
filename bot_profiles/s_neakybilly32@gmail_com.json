@@ -1,0 +1,64 @@
+{
+  "username": "s.neakybilly32@gmail.com",
+  "password": "moeder123",
+  "randomDat": "XOY7e/8nCn0B4rLxiWJgwigaFUW9osNf",
+  "blocked": false,
+  "locked": false,
+  "lastLogin": {
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 8
+    },
+    "time": {
+      "hour": 22,
+      "minute": 27,
+      "second": 48,
+      "nano": 160170500
+    }
+  },
+  "lastLogout": {
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 8
+    },
+    "time": {
+      "hour": 22,
+      "minute": 25,
+      "second": 43,
+      "nano": 933572500
+    }
+  },
+  "sessions": [
+    [
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 8
+        },
+        "time": {
+          "hour": 22,
+          "minute": 23,
+          "second": 35,
+          "nano": 510395900
+        }
+      },
+      {
+        "date": {
+          "year": 2021,
+          "month": 12,
+          "day": 8
+        },
+        "time": {
+          "hour": 22,
+          "minute": 25,
+          "second": 43,
+          "nano": 933572500
+        }
+      }
+    ]
+  ],
+  "world": 546
+}

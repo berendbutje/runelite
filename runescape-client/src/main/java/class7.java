@@ -91,9 +91,9 @@ public class class7 {
 		garbageValue = "-1545852128"
 	)
 	public static int[] method57() {
-		int[] var0 = new int[KeyHandler.field110]; // L: 234
+		int[] var0 = new int[KeyHandler.KeyHandler_keyDownCount]; // L: 234
 
-		for (int var1 = 0; var1 < KeyHandler.field110; ++var1) { // L: 235
+		for (int var1 = 0; var1 < KeyHandler.KeyHandler_keyDownCount; ++var1) { // L: 235
 			var0[var1] = KeyHandler.field125[var1]; // L: 236
 		}
 

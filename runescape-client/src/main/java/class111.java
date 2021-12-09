@@ -24,11 +24,11 @@ public class class111 implements class110 {
 	)
 	public static final synchronized long method2516() {
 		long var0 = System.currentTimeMillis(); // L: 14
-		if (var0 < class397.field4289) { // L: 15
-			class397.field4288 += class397.field4289 - var0; // L: 16
+		if (var0 < class397.lastTime) { // L: 15
+			class397.field4288 += class397.lastTime - var0; // L: 16
 		}
 
-		class397.field4289 = var0; // L: 18
+		class397.lastTime = var0; // L: 18
 		return var0 + class397.field4288; // L: 19
 	}
 

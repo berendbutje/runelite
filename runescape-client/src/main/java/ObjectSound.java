@@ -1,9 +1,6 @@
+import net.runelite.mapping.*;
+
 import java.io.IOException;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("br")
 @Implements("ObjectSound")
@@ -343,7 +340,8 @@ public final class ObjectSound extends Node {
 		descriptor = "(B)[B",
 		garbageValue = "34"
 	)
-	public static byte[] method1771() {
+	@Export("readRandomDat")
+	public static byte[] readRandomDat() {
 		byte[] var0 = new byte[24]; // L: 277
 
 		try {

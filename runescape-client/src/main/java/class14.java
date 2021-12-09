@@ -446,7 +446,7 @@ public class class14 {
 			var8.packetBuffer.method7003(identifier); // L: 8325
 			var8.packetBuffer.writeShort(DefaultsGroup.baseY + param1); // L: 8326
 			var8.packetBuffer.method7003(param0 + class19.baseX); // L: 8327
-			var8.packetBuffer.method6947(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8328
+			var8.packetBuffer.writeByteWeird(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8328
 			Client.packetWriter.addNode(var8); // L: 8329
 		} else {
 			PacketBufferNode var9;
@@ -551,7 +551,7 @@ public class class14 {
 					Client.destinationX = param0; // L: 8640
 					Client.destinationY = param1; // L: 8641
 					var9 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2672, Client.packetWriter.isaacCipher); // L: 8643
-					var9.packetBuffer.method6947(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8644
+					var9.packetBuffer.writeByteWeird(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8644
 					var9.packetBuffer.writeShort(identifier); // L: 8645
 					Client.packetWriter.addNode(var9); // L: 8646
 				}
@@ -603,7 +603,7 @@ public class class14 {
 					var8.packetBuffer.writeShort(DefaultsGroup.baseY + param1); // L: 8708
 					var8.packetBuffer.writeShort(SoundSystem.selectedItemId); // L: 8709
 					var8.packetBuffer.writeShort(param0 + class19.baseX); // L: 8710
-					var8.packetBuffer.method6947(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8711
+					var8.packetBuffer.writeByteWeird(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8711
 					var8.packetBuffer.method7003(ReflectionCheck.selectedItemSlot); // L: 8712
 					var8.packetBuffer.method7010(MouseHandler.selectedItemWidget); // L: 8713
 					Client.packetWriter.addNode(var8); // L: 8714
@@ -683,7 +683,7 @@ public class class14 {
 					Client.destinationX = param0; // L: 8306
 					Client.destinationY = param1; // L: 8307
 					var8 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2767, Client.packetWriter.isaacCipher); // L: 8309
-					var8.packetBuffer.method6947(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8310
+					var8.packetBuffer.writeByteWeird(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8310
 					var8.packetBuffer.method6962(param0 + class19.baseX); // L: 8311
 					var8.packetBuffer.method7003(identifier); // L: 8312
 					var8.packetBuffer.writeShort(DefaultsGroup.baseY + param1); // L: 8313
@@ -1109,7 +1109,7 @@ public class class14 {
 
 										var16 = ItemContainer.getWidgetChild(param1, param0); // L: 8811
 										if (var16 != null) { // L: 8812
-											GrandExchangeEvents.widgetDefaultMenuAction(identifier, param1, param0, var16.itemId, var5); // L: 8813
+											GrandExchangeEvents.invokeWidgetMenuAction(identifier, param1, param0, var16.itemId, var5); // L: 8813
 										}
 									}
 								}

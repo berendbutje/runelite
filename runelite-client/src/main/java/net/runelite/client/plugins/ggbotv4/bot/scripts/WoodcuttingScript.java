@@ -1,94 +1,121 @@
 package net.runelite.client.plugins.ggbotv4.bot.scripts;
 
+import net.runelite.api.Client;
 import net.runelite.api.GameObject;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
 import net.runelite.api.MenuAction;
+import net.runelite.api.Player;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.coords.WorldPoint;
+import net.runelite.api.events.ClientTick;
+import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.plugins.ggbotv4.bot.Bot;
+import net.runelite.client.plugins.ggbotv4.bot.GameObjectManager;
+import net.runelite.client.plugins.ggbotv4.bot.InventoryManager;
 import net.runelite.client.plugins.ggbotv4.bot.Script;
 import net.runelite.client.plugins.ggbotv4.bot.task.Task;
-import net.runelite.client.plugins.ggbotv4.bot.task.TaskUtil;
-import net.runelite.client.plugins.ggbotv4.plugin.BotPlugin;
+import net.runelite.client.plugins.ggbotv4.bot.task.util.TaskUtil;
 import net.runelite.client.plugins.ggbotv4.util.Axe;
 import net.runelite.client.plugins.ggbotv4.util.TreeType;
 import net.runelite.client.ui.overlay.OverlayUtil;
 
 import java.awt.*;
-import java.util.List;
-import java.util.*;
+
+import static net.runelite.api.Constants.CLIENT_TICK_LENGTH;
 
 public class WoodcuttingScript implements Script {
-    private long treeTarget = -1;
-    private final LocalPoint startPosition;
+    private final Client client;
+    private final TreeType tree;
 
-    public WoodcuttingScript(BotPlugin bot) {
-        startPosition = new LocalPoint(
-                bot.getClient().getLocalPlayer().getLocalLocation().getX(),
-                bot.getClient().getLocalPlayer().getLocalLocation().getY()
+    private long currentTarget = -1;
+    private final WorldPoint startPosition;
+
+    private String overheadText = "";
+
+    public WoodcuttingScript(Bot bot, TreeType tree) {
+        this.client = bot.getClient();
+        this.tree = tree;
+
+        startPosition = new WorldPoint(
+                client.getLocalPlayer().getWorldLocation().getX(),
+                client.getLocalPlayer().getWorldLocation().getY(),
+                client.getLocalPlayer().getWorldLocation().getPlane()
         );
+    }
+
+    @Subscribe
+    public void onClientTick(ClientTick clientTick) {
+        final Player local = client.getLocalPlayer();
+        assert(local != null);
+
+        if(local.getOverheadCycle() == 0 && !overheadText.isEmpty()) {
+            local.setOverheadText(overheadText);
+            local.setOverheadCycle(2000 / CLIENT_TICK_LENGTH);
+
+            overheadText = "";
+        }
     }
 
     @Override
     public String getName() {
-        return null;
+        return "Woodcutting";
     }
 
     @Override
-    public Task evaluate(BotPlugin bot) {
+    public Task evaluate(Bot bot) {
+        final InventoryManager inventory = bot.getInventory();
+        final GameObjectManager gameObjects = bot.getGameObjects();
+        final Player local = client.getLocalPlayer();
+        assert(local != null);
+
         switch(bot.getState()) {
             case Idle: {
-                if (bot.isInventoryFull()) {
-                    System.out.println("Inventory full, going to the bank...");
-
-                    treeTarget = -1;
-                    return TaskUtil.interact(bot.getBankTarget(), MenuAction.GAME_OBJECT_SECOND_OPTION);
+                LocalPoint startPosition = LocalPoint.fromWorld(client, this.startPosition);
+                if(startPosition == null) {
+                    overheadText = "Unable to find start position!";
+                    return null;
                 }
 
-                if (bot.getTreeObjects().get(treeTarget) == null) {
-                    Map<Long, GameObject> treeObjects = bot.getTreeObjects();
+                if (inventory.isFull()) {
+                    overheadText = "My inventory is full, I'm going to move to the bank";
 
-                    if (treeObjects.size() > 0) {
-                        List<GameObject> trees = new ArrayList<>(treeObjects.values());
-                        trees.removeIf(object -> TreeType.of(object.getId()) == null);
-
-                        System.out.println(treeObjects.size() + " trees around");
-
-                        GameObject tree = trees.stream().min(Comparator.comparing((GameObject a) -> a.getLocalLocation().distanceTo(startPosition))).orElseThrow();
-                        treeTarget = tree.getHash();
-
-                        System.out.println("Found new target at " + tree.getLocalLocation().getSceneX() + ", " + tree.getLocalLocation().getSceneY());
-
-                        return TaskUtil.interact(tree, MenuAction.GAME_OBJECT_FIRST_OPTION);
+                    currentTarget = -1;
+                    if(gameObjects.get(bot.getBankTarget()) != null) {
+                        return TaskUtil.interact(gameObjects.get(bot.getBankTarget()), MenuAction.GAME_OBJECT_SECOND_OPTION);
                     } else {
-                        System.out.println("No trees around.");
+                        overheadText = "Bank is not in current scene!";
+                        return null;
                     }
-                } else {
-                    // Probably levelup or something...
-                    System.out.println("Did I go levelup? Target is not null yet, retrying old target...");
-                    return TaskUtil.interact(bot.getTreeObjects().get(treeTarget), MenuAction.GAME_OBJECT_FIRST_OPTION);
                 }
 
-                System.out.println("Player started idling...");
+                if (gameObjects.get(currentTarget) == null) {
+                    Task nextTarget = chopNext(bot);
+                    if(nextTarget != null)
+                        return nextTarget;
+                } else {
+                    // Probably level up or something...
+                    return TaskUtil.interact(gameObjects.get(currentTarget), MenuAction.GAME_OBJECT_FIRST_OPTION);
+                }
+
+                overheadText = "Ladadi ladada~";
+            } break;
+
+            case Woodcutting: {
+                if (gameObjects.get(currentTarget) == null) {
+                    overheadText = "Beat you to it!";
+                    // Tree disappeared, but still chopping.
+                    return chopNext(bot);
+                }
+
+                overheadText = "Chop, chop, chop...";
             } break;
 
             case Banking: {
-                Item[] items = bot.getClient().getItemContainer(InventoryID.INVENTORY).getItems();
                 Axe axe = Axe.findActive(bot.getClient());
 
-                List<Task> tasks = new ArrayList<>();
-                Set<Integer> processed = new HashSet<>();
-                for(int slot = 0; slot < items.length; slot++) {
-                    Item item = items[slot];
-
-                    if((axe == null || item.getId() != axe.getItemId()) && !processed.contains(item.getId())) {
-                        processed.add(item.getId());
-                        tasks.add(TaskUtil.bankDepositAll(slot));
-                    }
-                }
-
-                tasks.add(TaskUtil.clickWidgetChild(WidgetInfo.BANK_WINDOW, 11));
-                return Task.of(tasks);
+                return Task.chain(
+                        TaskUtil.Bank.depositItems((id) -> id == (axe != null ? axe.getItemId() : -1)),
+                        chopNext(bot)
+                );
             }
         }
 
@@ -96,14 +123,34 @@ public class WoodcuttingScript implements Script {
     }
 
     @Override
-    public void renderDebug(Graphics2D graphics, BotPlugin bot) {
+    public void renderDebug(Graphics2D graphics, Bot bot) {
+        final GameObjectManager gameObjects = bot.getGameObjects();
+
+        final LocalPoint startPosition = LocalPoint.fromWorld(client, this.startPosition);
         if(startPosition != null) {
             OverlayUtil.renderLocalPoint(bot.getClient(), graphics, startPosition, Color.YELLOW);
         }
 
-        if(bot.getTreeObjects().get(treeTarget) != null) {
-            OverlayUtil.renderTileOverlay(graphics, bot.getTreeObjects().get(treeTarget), "Current target", Color.GREEN);
+        if(gameObjects.get(currentTarget) != null) {
+            OverlayUtil.renderTileOverlay(graphics, gameObjects.get(currentTarget), "Current target", Color.GREEN);
         }
     }
 
+    private Task chopNext(Bot bot) {
+        final GameObjectManager gameObjects = bot.getGameObjects();
+        final LocalPoint startPosition = LocalPoint.fromWorld(client, this.startPosition);
+        GameObject nextTarget = gameObjects.find(startPosition, obj -> TreeType.of(obj.getId()) == tree);
+
+        if (nextTarget != null) {
+            currentTarget = nextTarget.getHash();
+
+            return TaskUtil.interact(nextTarget, MenuAction.GAME_OBJECT_FIRST_OPTION);
+        } else {
+            // TODO: 'Walk here' to startPosition
+            // No trees around
+            currentTarget = -1;
+        }
+
+        return null;
+    }
 }

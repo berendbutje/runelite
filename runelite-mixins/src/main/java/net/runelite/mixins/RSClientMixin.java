@@ -35,6 +35,7 @@ import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.*;
+import net.runelite.api.ggbot.BotProfile;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.*;
@@ -56,6 +57,92 @@ import static net.runelite.mixins.CameraMixin.*;
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
 {
+	@Copy("invokeWidgetMenuAction")
+	@Replace("invokeWidgetMenuAction")
+	static void copy$invokeWidgetMenuAction(int id, int param1, int param0, int itemId, String var4)
+	{
+		if (printMenuActions)
+		{
+			WidgetInfo widget = WidgetInfo.find(id);
+
+			client.getItemDefinition(itemId);
+			client.getLogger().info(
+					"|WidgetMenuAction|: Target={} Id={} Param0={} Param1={} Item={}",
+					var4,
+					id, param0, (widget != null ? widget.name() : param1),
+					client.getItemDefinition(itemId).getName()
+			);
+		}
+
+		copy$invokeWidgetMenuAction(id, param1, param0, itemId, var4);
+	}
+
+	@Inject
+	@Override
+	public LoginState getLoginState() {
+		return LoginState.of(client.getRSLoginIndex());
+	}
+
+	@Inject
+	@Override
+	public void setLoginState(LoginState state) {
+		client.setRSLoginIndex(state.getState());
+	}
+
+	@Inject
+	public static final byte[] RANDOM_DAT_EMPTY = new byte[24];
+
+	static {
+		Arrays.fill(RANDOM_DAT_EMPTY, (byte)-1);
+	}
+
+	@Copy("writeRandomDat")
+	@Replace("writeRandomDat")
+	@SuppressWarnings("InfiniteRecursion")
+	public static void copy$writeRandomDat(Buffer buffer, int length) {
+		// Called when the server provides us with random_dat
+
+		// First call the original function, the buffer will contain the random_dat afterwards.
+		copy$writeRandomDat(buffer, length);
+
+		byte[] randomDat = Arrays.copyOfRange(buffer.getPayload(), length, 24);
+
+		if(client.getUsername() != null && !client.getUsername().isEmpty()) {
+			BotProfile profile = BotProfile.get(client.getUsername());
+
+			if(profile.getRandomDat() == null) {
+				profile.setRandomDat(randomDat);
+				profile.save();
+
+				client.getLogger().info("Set random_dat for {}", client.getUsername());
+			} else {
+				client.getLogger().error("Hmm, random_dat already set for {}", client.getUsername());
+			}
+		} else {
+			client.getLogger().warn("Got random dat, but username is not set: {} -> {}", buffer.getOffset(), length);
+		}
+	}
+
+	@Copy("readRandomDat")
+	@Replace("readRandomDat")
+	public static byte[] copy$readRandomDat() {
+		client.getLogger().warn("Running directory {}", System.getProperty("user.dir"));
+
+		if(client.getUsername() != null && !client.getUsername().isEmpty()) {
+			BotProfile profile = BotProfile.get(client.getUsername());
+
+			if(profile != null && profile.getRandomDat() != null ) {
+				client.getLogger().info("Got random_dat for {}", client.getUsername());
+				return profile.getRandomDat();
+			} else {
+				client.getLogger().error("Hmm, random_dat is not set for {}", client.getUsername());
+			}
+		}
+
+		client.getLogger().info("readRandomDat(): returning empty.");
+		return RANDOM_DAT_EMPTY;
+	}
+
 	@FieldHook("hasFocus")
 	@Inject
 	static void onHasFocusChanged(int idx) {
@@ -1391,11 +1478,13 @@ public abstract class RSClientMixin implements RSClient
 
 		if (printMenuActions)
 		{
+			WidgetInfo widget = WidgetInfo.find(menuOptionClicked.getParam1());
+
 			client.getLogger().info(
 				"|MenuAction|: MenuOption={} MenuTarget={} Id={} Opcode={}/{} Param0={} Param1={} CanvasX={} CanvasY={}",
 				menuOptionClicked.getMenuOption(), menuOptionClicked.getMenuTarget(), menuOptionClicked.getId(),
 				menuOptionClicked.getMenuAction(), opcode + (decremented ? 2000 : 0),
-				menuOptionClicked.getParam0(), menuOptionClicked.getParam1(), canvasX, canvasY
+				menuOptionClicked.getParam0(), (widget != null ? widget.name() : menuOptionClicked.getParam1()), canvasX, canvasY
 			);
 		}
 
@@ -1888,6 +1977,8 @@ public abstract class RSClientMixin implements RSClient
 		{
 			client.promptCredentials(true);
 		}
+
+		client.getCallbacks().post(new ForceDisconnect(reason));
 	}
 
 	@Copy("changeGameOptions")

@@ -1,0 +1,35 @@
+{
+  "username": "sn.eakybilly32@gmail.com",
+  "password": "moeder123",
+  "randomDat": "vV66ayePGi4Qpr4Hr8PdSZmPaAgSdMwJ",
+  "blocked": false,
+  "locked": false,
+  "lastLogin": {
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 7
+    },
+    "time": {
+      "hour": 16,
+      "minute": 35,
+      "second": 40,
+      "nano": 25419700
+    }
+  },
+  "lastLogout": {
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 7
+    },
+    "time": {
+      "hour": 16,
+      "minute": 35,
+      "second": 26,
+      "nano": 169912100
+    }
+  },
+  "sessions": [],
+  "world": 308
+}

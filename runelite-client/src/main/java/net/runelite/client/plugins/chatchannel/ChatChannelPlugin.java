@@ -644,7 +644,7 @@ public class ChatChannelPlugin extends Plugin
 
 	private void rebuildFriendsChat()
 	{
-		Widget chat = client.getWidget(WidgetInfo.FRIENDS_CHAT_ROOT);
+		Widget chat = client.getWidget(WidgetInfo.FRIENDS_CHAT);
 		if (chat == null)
 		{
 			return;

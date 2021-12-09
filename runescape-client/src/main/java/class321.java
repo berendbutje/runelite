@@ -4,49 +4,49 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("li")
 public class class321 {
 	@ObfuscatedName("i")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) { // L: 12
-			if (var3 == var1) { // L: 13
+	@Export("generateRandomDat")
+	public static void generateRandomDat(byte[] result, int length, byte[] randomDatData, int startRandom, int endRandom) {
+		if (randomDatData == result) { // L: 12
+			if (startRandom == length) { // L: 13
 				return;
 			}
 
-			if (var3 > var1 && var3 < var4 + var1) { // L: 14
-				--var4; // L: 15
-				var1 += var4; // L: 16
-				var3 += var4; // L: 17
-				var4 = var1 - var4; // L: 18
+			if (startRandom > length && startRandom < endRandom + length) { // L: 14
+				--endRandom; // L: 15
+				length += endRandom; // L: 16
+				startRandom += endRandom; // L: 17
+				endRandom = length - endRandom; // L: 18
 
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 19 20 28
-					var2[var3--] = var0[var1--]; // L: 21
-					var2[var3--] = var0[var1--]; // L: 22
-					var2[var3--] = var0[var1--]; // L: 23
-					var2[var3--] = var0[var1--]; // L: 24
-					var2[var3--] = var0[var1--]; // L: 25
-					var2[var3--] = var0[var1--]; // L: 26
-					var2[var3--] = var0[var1--]; // L: 27
+				for (endRandom += 7; length >= endRandom; randomDatData[startRandom--] = result[length--]) { // L: 19 20 28
+					randomDatData[startRandom--] = result[length--]; // L: 21
+					randomDatData[startRandom--] = result[length--]; // L: 22
+					randomDatData[startRandom--] = result[length--]; // L: 23
+					randomDatData[startRandom--] = result[length--]; // L: 24
+					randomDatData[startRandom--] = result[length--]; // L: 25
+					randomDatData[startRandom--] = result[length--]; // L: 26
+					randomDatData[startRandom--] = result[length--]; // L: 27
 				}
 
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 30 31
+				for (endRandom -= 7; length >= endRandom; randomDatData[startRandom--] = result[length--]) { // L: 30 31
 				}
 
 				return; // L: 32
 			}
 		}
 
-		var4 += var1; // L: 35
+		endRandom += length; // L: 35
 
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 36 37 45
-			var2[var3++] = var0[var1++]; // L: 38
-			var2[var3++] = var0[var1++]; // L: 39
-			var2[var3++] = var0[var1++]; // L: 40
-			var2[var3++] = var0[var1++]; // L: 41
-			var2[var3++] = var0[var1++]; // L: 42
-			var2[var3++] = var0[var1++]; // L: 43
-			var2[var3++] = var0[var1++]; // L: 44
+		for (endRandom -= 7; length < endRandom; randomDatData[startRandom++] = result[length++]) { // L: 36 37 45
+			randomDatData[startRandom++] = result[length++]; // L: 38
+			randomDatData[startRandom++] = result[length++]; // L: 39
+			randomDatData[startRandom++] = result[length++]; // L: 40
+			randomDatData[startRandom++] = result[length++]; // L: 41
+			randomDatData[startRandom++] = result[length++]; // L: 42
+			randomDatData[startRandom++] = result[length++]; // L: 43
+			randomDatData[startRandom++] = result[length++]; // L: 44
 		}
 
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 47 48
+		for (endRandom += 7; length < endRandom; randomDatData[startRandom++] = result[length++]) { // L: 47 48
 		}
 
 	} // L: 49

@@ -38,6 +38,10 @@ import java.awt.image.BufferedImage;
  */
 public interface Actor extends Renderable, Locatable
 {
+	boolean isIdle();
+	boolean isWalking();
+	boolean isRunning();
+
 	Tile[] getPath();
 
 	/**

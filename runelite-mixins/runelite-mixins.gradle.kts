@@ -32,8 +32,6 @@ dependencies {
     compileOnly(project(":injection-annotations"))
     compileOnly(project(":runescape-api"))
     compileOnly(project(":cache"))
-
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
 }
 
 tasks {

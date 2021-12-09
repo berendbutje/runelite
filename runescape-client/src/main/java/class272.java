@@ -1,11 +1,12 @@
-import java.awt.Toolkit;
+import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
+
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("js")
 public class class272 {
@@ -112,7 +113,7 @@ public class class272 {
 								Login.Login_response1 = "This is a <col=00ffff>Beta<col=ffffff> world."; // L: 410
 								Login.Login_response2 = "Your normal account will not be affected."; // L: 411
 								Login.Login_response3 = ""; // L: 412
-								class275.method5201(1); // L: 413
+								Login.setLoginIndex(1); // L: 413
 								ParamComposition.method3216(); // L: 414
 							} else if ((Client.worldProperties & 4) != 0) { // L: 416
 								if ((Client.worldProperties & 1024) != 0) { // L: 417
@@ -126,14 +127,14 @@ public class class272 {
 								}
 
 								Login.Login_response0 = "Warning!"; // L: 427
-								class275.method5201(1); // L: 428
+								Login.setLoginIndex(1); // L: 428
 								ParamComposition.method3216(); // L: 429
 							} else if ((Client.worldProperties & 1024) != 0) { // L: 431
 								Login.Login_response1 = "This is a <col=ffff00>High Risk<col=ffffff> world."; // L: 432
 								Login.Login_response2 = "The Protect Item prayer will"; // L: 433
 								Login.Login_response3 = "not work on this world."; // L: 434
 								Login.Login_response0 = "Warning!"; // L: 435
-								class275.method5201(1); // L: 436
+								Login.setLoginIndex(1); // L: 436
 								ParamComposition.method3216(); // L: 437
 							} else {
 								class1.Login_promptCredentials(false); // L: 440
@@ -153,7 +154,7 @@ public class class272 {
 
 									var27 = Login.loginBoxCenter + 80; // L: 458
 									if (var4 == 1 && var25 >= var27 - 75 && var25 <= var27 + 75 && var26 >= var8 - 20 && var26 <= var8 + 20) { // L: 459
-										class275.method5201(0); // L: 460
+										Login.setLoginIndex(0); // L: 460
 									}
 									break;
 								}
@@ -161,7 +162,7 @@ public class class272 {
 								if (class12.field55 == 84) { // L: 446
 									class1.Login_promptCredentials(false); // L: 447
 								} else if (class12.field55 == 13) { // L: 449
-									class275.method5201(0); // L: 450
+									Login.setLoginIndex(0); // L: 450
 								}
 							}
 						} else {
@@ -184,10 +185,10 @@ public class class272 {
 								if (class114.field1359 != null) { // L: 471
 									var31 = class114.field1359.highX / 2; // L: 472
 									if (var4 == 1 && var25 >= class114.field1359.lowX - var31 && var25 <= var31 + class114.field1359.lowX && var26 >= var28 - 15 && var26 < var28) { // L: 473
-										switch(Login.field865) { // L: 474
+										switch(Login.Login_accountLoggedInResponse) { // L: 474
 										case 1:
 											class1.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address."); // L: 482
-											class275.method5201(5); // L: 483
+											Login.setLoginIndex(5); // L: 483
 											return; // L: 484
 										case 2:
 											class91.openURL("https://support.runescape.com/hc/en-gb", true, false); // L: 477
@@ -217,7 +218,7 @@ public class class272 {
 
 								var31 = Login.loginBoxX + 180 + 80; // L: 506
 								if (var4 == 1 && var25 >= var31 - 75 && var25 <= var31 + 75 && var26 >= var29 - 20 && var26 <= var29 + 20) { // L: 507
-									class275.method5201(0); // L: 508
+									Login.setLoginIndex(0); // L: 508
 									Login.Login_username = ""; // L: 509
 									Login.Login_password = ""; // L: 510
 									ReflectionCheck.field429 = 0; // L: 511
@@ -281,7 +282,7 @@ public class class272 {
 																Login.Login_username = Login.Login_username + class319.field3858;
 															}
 														} else {
-															class275.method5201(0); // L: 539
+															Login.setLoginIndex(0); // L: 539
 															Login.Login_username = ""; // L: 540
 															Login.Login_password = ""; // L: 541
 															ReflectionCheck.field429 = 0; // L: 542
@@ -336,7 +337,7 @@ public class class272 {
 
 										for (int var15 = 0; var15 < var14; ++var15) { // L: 588
 											if (!GrandExchangeOffer.method5473(var13.charAt(var15)) || !DynamicObject.method2001(var13.charAt(var15))) { // L: 589
-												class275.method5201(3); // L: 590
+												Login.setLoginIndex(3); // L: 590
 												return; // L: 591
 											}
 										}
@@ -357,7 +358,7 @@ public class class272 {
 								var8 = 326; // L: 614
 								if (var4 == 1 && var25 >= var27 - 75 && var25 <= var27 + 75 && var26 >= var8 - 20 && var26 <= var8 + 20) { // L: 615
 									class1.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address."); // L: 616
-									class275.method5201(5); // L: 617
+									Login.setLoginIndex(5); // L: 617
 									return; // L: 618
 								}
 							} else {
@@ -390,7 +391,7 @@ public class class272 {
 
 									var27 = Login.loginBoxX + 180 + 80; // L: 643
 									if (var4 == 1 && var25 >= var27 - 75 && var25 <= var27 + 75 && var26 >= var8 - 20 && var26 <= var8 + 20) { // L: 644
-										class275.method5201(0); // L: 645
+										Login.setLoginIndex(0); // L: 645
 										Login.Login_username = ""; // L: 646
 										Login.Login_password = ""; // L: 647
 										ReflectionCheck.field429 = 0; // L: 648
@@ -408,7 +409,7 @@ public class class272 {
 										}
 
 										if (class12.field55 == 13) { // L: 659
-											class275.method5201(0); // L: 660
+											Login.setLoginIndex(0); // L: 660
 											Login.Login_username = ""; // L: 661
 											Login.Login_password = ""; // L: 662
 											ReflectionCheck.field429 = 0; // L: 663
@@ -493,7 +494,7 @@ public class class272 {
 										if (var4 == 1 && var25 >= var27 - 75 && var25 <= var27 + 75 && var26 >= var8 - 20 && var26 <= var8 + 20) { // L: 738
 											class91.openURL(HealthBar.method2246("secure", true) + "m=dob/set_dob.ws", true, false); // L: 739
 											class1.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)"); // L: 740
-											class275.method5201(6); // L: 741
+											Login.setLoginIndex(6); // L: 741
 											return; // L: 742
 										}
 
@@ -507,7 +508,7 @@ public class class272 {
 										if (var4 == 1 && var25 >= var27 - 75 && var25 <= var27 + 75 && var26 >= var8 - 20 && var26 <= var8 + 20) { // L: 752
 											class91.openURL("https://www.jagex.com/terms/privacy", true, false); // L: 753
 											class1.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)"); // L: 754
-											class275.method5201(6); // L: 755
+											Login.setLoginIndex(6); // L: 755
 											return; // L: 756
 										}
 
@@ -568,7 +569,7 @@ public class class272 {
 										}
 									} else if (Login.loginIndex == 14) { // L: 820
 										String var22 = ""; // L: 821
-										switch(Login.field866) { // L: 822
+										switch(Login.Login_accountBlockedResponse) { // L: 822
 										case 0:
 											var22 = "https://support.runescape.com/hc/en-gb/articles/115002238729-Account-Bans"; // L: 827
 											break; // L: 828
@@ -584,7 +585,7 @@ public class class272 {
 										if (var4 == 1 && var25 >= var31 - 75 && var25 <= var31 + 75 && var26 >= var29 - 20 && var26 <= var29 + 20) { // L: 835
 											class91.openURL(var22, true, false); // L: 836
 											class1.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)"); // L: 837
-											class275.method5201(6); // L: 838
+											Login.setLoginIndex(6); // L: 838
 											return; // L: 839
 										}
 

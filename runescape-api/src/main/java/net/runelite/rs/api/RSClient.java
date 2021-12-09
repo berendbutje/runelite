@@ -26,6 +26,8 @@ package net.runelite.rs.api;
 
 import net.runelite.api.*;
 import net.runelite.api.clan.ClanRank;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Replace;
 import net.runelite.api.widgets.Widget;
 import net.runelite.mapping.Construct;
 import net.runelite.mapping.Import;
@@ -35,6 +37,48 @@ import java.util.Map;
 
 public interface RSClient extends RSGameEngine, Client
 {
+	@Import("invokeWidgetMenuAction")
+	void sendWidgetMenuAction(int id, int param1, int param0, int itemId, String var4);
+
+	@Import("forceDisconnect")
+	void forceDisconnect(int reason);
+	
+	@Import("logOut")
+	void logout();
+
+	@Import("Login_accountLoggedInResponse")
+	// Terrible name
+	int getLoggedInResponse();
+
+	@Import("Login_accountBlockedResponse")
+	int getAccountBlockedReason();
+
+	@Import("setLoginResponseString")
+	void setLoginResponseString(String firstLine, String secondLine, String thirdLine);
+
+	@Import("platformInfo")
+	RSPlatformInfo getPlatformInfo();
+
+	@Import("writeRandomDat")
+	void writeRandomDat(Buffer var0, int var1);
+
+	@Import("generateRandomDat")
+	void generateRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4);
+
+	@Import("userHomeDirectory")
+	String getUserHomeDirectory();
+
+	@Import("JagexCache_randomDat")
+	RSBufferedFile getRandomDatHandle();
+
+	@Import("readRandomDat")
+	byte[] readRandomDat();
+
+	@Import("randomDatData")
+	byte[] getRandomDatData();
+	@Import("randomDatData")
+	void setRandomDatData(byte[] data);
+
 	@Override
 	@Import("hasFocus")
 	boolean hasFocus();
@@ -297,6 +341,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	void setPassword(String password);
 
+	@Import("Login_password")
+	@Override
+	String getPassword();
+
 	@Import("otp")
 	@Override
 	void setOtp(String otp);
@@ -306,8 +354,9 @@ public interface RSClient extends RSGameEngine, Client
 	int getCurrentLoginField();
 
 	@Import("loginIndex")
-	@Override
-	int getLoginIndex();
+	int getRSLoginIndex();
+	@Import("loginIndex")
+	void setRSLoginIndex(int index);
 
 	@Import("playerMenuActions")
 	@Override
@@ -826,6 +875,7 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Construct
 	RSScriptEvent createScriptEvent();
+
 
 	@Import("runScript")
 	void runScript(RSScriptEvent ev, int ex, int var2);

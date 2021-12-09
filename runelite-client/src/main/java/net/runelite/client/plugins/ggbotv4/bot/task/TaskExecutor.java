@@ -1,33 +1,35 @@
 package net.runelite.client.plugins.ggbotv4.bot.task;
 
-import net.runelite.client.plugins.ggbotv4.plugin.BotPlugin;
+import net.runelite.client.plugins.ggbotv4.bot.Bot;
 
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 public class TaskExecutor {
-    private final List<Task> tasks = Collections.synchronizedList(new LinkedList<>());
+    private final LinkedList<Task> tasks = new LinkedList<>();
 
-    public void execute(BotPlugin bot) {
-        synchronized (tasks) {
-            while (tasks.size() > 0) {
-                Task task = tasks.get(0);
+    public void execute(Bot bot) {
+        while (!tasks.isEmpty()) {
+            Task task = tasks.getFirst();
 
-                TaskResult result = task.evaluate(bot);
+            TaskResult result = task.evaluate(bot);
+            if(result.getState() == TaskResult.State.Ok) {
                 if (result.getNext() == task) {
                     // Task is blocking, retry next tick.
                     break;
                 } else if (result.getNext() != null) {
                     // Task is blocked by another task, try to execute it.
-                    tasks.add(0, result.getNext());
-                } else if (result.isError()) {
-                    handleTaskError(task, result.getError());
+                    tasks.addFirst(result.getNext());
+                }
+            } else if (result.getState() == TaskResult.State.Error) {
+                handleTaskError(task, result.getError());
 
-                    tasks.clear();
-                } else if (result.isFinished()) {
-                    // Task is finished, try to start next task.
-                    tasks.remove(0);
+                tasks.clear();
+            } else if (result.getState() == TaskResult.State.Finished) {
+                // Task is finished, try to start next task.
+                tasks.removeFirst();
+
+                if (result.getNext() != null) {
+                    tasks.addFirst(result.getNext());
                 }
             }
         }
@@ -38,22 +40,16 @@ public class TaskExecutor {
     }
 
     public void clear() {
-        synchronized (tasks) {
-            tasks.clear();
-        }
+        tasks.clear();
     }
 
     public void add(Task t) {
         if(t != null) {
-            synchronized (tasks) {
-                tasks.add(t);
-            }
+            tasks.add(t);
         }
     }
 
     public int size() {
-        synchronized (tasks) {
-            return tasks.size();
-        }
+        return tasks.size();
     }
 }

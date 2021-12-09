@@ -152,7 +152,7 @@ public class EnumComposition extends DualNode {
 			var1 = 10; // L: 887
 		}
 
-		class275.method5201(var1); // L: 889
+		Login.setLoginIndex(var1); // L: 889
 		if (var0) { // L: 890
 			Login.Login_username = ""; // L: 891
 			Login.Login_password = ""; // L: 892

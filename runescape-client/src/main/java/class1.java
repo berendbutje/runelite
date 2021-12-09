@@ -1,13 +1,14 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
+
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Random;
 import java.util.concurrent.Callable;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("w")
 public class class1 implements Callable {
@@ -93,7 +94,7 @@ public class class1 implements Callable {
 		if (Client.randomDatData != null) { // L: 92
 			var5.writeBytes(Client.randomDatData, 0, Client.randomDatData.length); // L: 93
 		} else {
-			byte[] var23 = ObjectSound.method1771(); // L: 96
+			byte[] var23 = ObjectSound.readRandomDat(); // L: 96
 			var5.writeBytes(var23, 0, var23.length); // L: 97
 		}
 
@@ -213,7 +214,7 @@ public class class1 implements Callable {
 		Login.Login_response1 = ""; // L: 861
 		Login.Login_response2 = "Enter your username/email & password."; // L: 862
 		Login.Login_response3 = ""; // L: 863
-		class275.method5201(2); // L: 864
+		Login.setLoginIndex(2); // L: 864
 		if (var0) { // L: 865
 			Login.Login_password = "";
 		}

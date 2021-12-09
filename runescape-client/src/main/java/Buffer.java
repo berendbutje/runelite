@@ -843,7 +843,7 @@ public class Buffer extends Node {
 		descriptor = "(IB)V",
 		garbageValue = "27"
 	)
-	public void method6947(int var1) {
+	public void writeByteWeird(int var1) {
 		this.array[++this.offset - 1] = (byte)(128 - var1); // L: 538
 	} // L: 539
 
@@ -996,7 +996,7 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "-410665583"
 	)
-	public void method7009(int var1) {
+	public void writeInt3Shuffled(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 8); // L: 610
 		this.array[++this.offset - 1] = (byte)(var1 >> 16); // L: 611
 		this.array[++this.offset - 1] = (byte)var1; // L: 612

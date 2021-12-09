@@ -1,11 +1,8 @@
+import net.runelite.mapping.*;
+
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ea")
 @Implements("ClanChannel")
@@ -365,7 +362,7 @@ public class ClanChannel extends Node {
 
 								if (var27) { // L: 10785
 									if (var20 < 10) { // L: 10786
-										GrandExchangeEvents.widgetDefaultMenuAction(var20 + 1, var9.id, var9.childIndex, var9.itemId, "");
+										GrandExchangeEvents.invokeWidgetMenuAction(var20 + 1, var9.id, var9.childIndex, var9.itemId, "");
 									} else if (var20 == 10) { // L: 10787
 										class262.Widget_runOnTargetLeave(); // L: 10788
 										Decimator.selectSpell(var9.id, var9.childIndex, SecureRandomCallable.Widget_unpackTargetMask(PendingSpawn.getWidgetFlags(var9)), var9.itemId); // L: 10789

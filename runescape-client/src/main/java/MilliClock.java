@@ -1,14 +1,7 @@
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
+import net.runelite.mapping.*;
+
+import java.io.*;
 import java.net.URL;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("eo")
 @Implements("MilliClock")
@@ -228,11 +221,12 @@ public class MilliClock extends Clock {
 		descriptor = "([BII)V",
 		garbageValue = "-32506034"
 	)
-	static void method2954(byte[] var0, int var1) {
+	@Export("instantiateRandomDat")
+	static void instantiateRandomDat(byte[] var0, int var1) {
 		if (Client.randomDatData == null) { // L: 11980
 			Client.randomDatData = new byte[24];
 		}
 
-		class321.writeRandomDat(var0, var1, Client.randomDatData, 0, 24); // L: 11981
+		class321.generateRandomDat(var0, var1, Client.randomDatData, 0, 24); // L: 11981
 	} // L: 11982
 }

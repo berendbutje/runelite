@@ -9,7 +9,7 @@ public final class class397 {
 	@ObfuscatedGetter(
 		longValue = -4044727011412295925L
 	)
-	static long field4289;
+	static long lastTime;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
 		longValue = 99400153304744329L

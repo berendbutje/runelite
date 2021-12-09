@@ -39,6 +39,8 @@ import lombok.Getter;
 @Getter
 public enum VarPlayer
 {
+	IS_RUNNING(173),
+
 	POUCH_STATUS(261),
 	DUEL_PENDING(286),
 	ATTACK_STYLE(43),

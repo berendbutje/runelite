@@ -1,11 +1,8 @@
+import net.runelite.mapping.*;
+import net.runelite.rs.Reflection;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
 @ObfuscatedName("fq")
 @Implements("CollisionMap")
@@ -626,11 +623,11 @@ public class CollisionMap {
 		SequenceDefinition.logOut(); // L: 3194
 		switch(var0) { // L: 3195
 		case 1:
-			class275.method5201(24); // L: 3199
+			Login.setLoginIndex(24); // L: 3199
 			class1.setLoginResponseString("", "You were disconnected from the server.", ""); // L: 3200
 			break;
 		case 2:
-			class275.method5201(24); // L: 3207
+			Login.setLoginIndex(24); // L: 3207
 			class1.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 3208
 		}
 

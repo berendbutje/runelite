@@ -39,6 +39,38 @@ import java.awt.image.BufferedImage;
 @Mixin(RSActor.class)
 public abstract class RSActorMixin implements RSActor
 {
+	@Inject
+	@Override
+	public boolean isWalking() {
+		if(getPath().length > 1) {
+			Tile a = getPath()[0];
+			Tile b = getPath()[1];
+
+			return a.getWorldLocation().distanceTo(b.getWorldLocation()) <= 1;
+		}
+
+		return false;
+	}
+
+	@Inject
+	@Override
+	public boolean isRunning() {
+		if(getPath().length > 1) {
+			Tile a = getPath()[0];
+			Tile b = getPath()[1];
+
+			return a.getWorldLocation().distanceTo(b.getWorldLocation()) > 1;
+		}
+
+		return false;
+	}
+
+	@Inject
+	@Override
+	public boolean isIdle() {
+		return getPoseAnimation() == getIdlePoseAnimation() || getPoseAnimation() == getIdleRotateLeft() || getPoseAnimation() == getIdleRotateRight();
+	}
+
 	@Shadow("client")
 	private static RSClient client;
 

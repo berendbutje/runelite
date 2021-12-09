@@ -419,7 +419,7 @@ public class SoundSystem implements Runnable {
 
 							while (Interpreter.field797.size() > 0) { // L: 417
 								class92 var19 = (class92)Interpreter.field797.remove(0); // L: 418
-								GrandExchangeEvents.widgetDefaultMenuAction(var19.method2277(), var19.method2279(), var19.method2278(), var19.method2281(), "");
+								GrandExchangeEvents.invokeWidgetMenuAction(var19.method2277(), var19.method2279(), var19.method2278(), var19.method2281(), "");
 							}
 
 							if (Interpreter.field791) { // L: 421
@@ -441,7 +441,7 @@ public class SoundSystem implements Runnable {
 
 					while (Interpreter.field797.size() > 0) {
 						class92 var41 = (class92)Interpreter.field797.remove(0);
-						GrandExchangeEvents.widgetDefaultMenuAction(var41.method2277(), var41.method2279(), var41.method2278(), var41.method2281(), "");
+						GrandExchangeEvents.invokeWidgetMenuAction(var41.method2277(), var41.method2279(), var41.method2278(), var41.method2281(), "");
 					}
 
 					if (Interpreter.field791) {
@@ -463,7 +463,7 @@ public class SoundSystem implements Runnable {
 
 				while (Interpreter.field797.size() > 0) {
 					class92 var34 = (class92)Interpreter.field797.remove(0);
-					GrandExchangeEvents.widgetDefaultMenuAction(var34.method2277(), var34.method2279(), var34.method2278(), var34.method2281(), ""); // L: 419
+					GrandExchangeEvents.invokeWidgetMenuAction(var34.method2277(), var34.method2279(), var34.method2278(), var34.method2281(), ""); // L: 419
 				}
 
 				if (Interpreter.field791) {
@@ -485,7 +485,7 @@ public class SoundSystem implements Runnable {
 
 			while (Interpreter.field797.size() > 0) {
 				class92 var26 = (class92)Interpreter.field797.remove(0);
-				GrandExchangeEvents.widgetDefaultMenuAction(var26.method2277(), var26.method2279(), var26.method2278(), var26.method2281(), "");
+				GrandExchangeEvents.invokeWidgetMenuAction(var26.method2277(), var26.method2279(), var26.method2278(), var26.method2281(), "");
 			}
 
 			if (Interpreter.field791) {

@@ -25,24 +25,20 @@
  */
 package net.runelite.mixins;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.ScriptPreFired;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
+import net.runelite.api.mixins.*;
 import net.runelite.api.widgets.JavaScriptCallback;
-import static net.runelite.cache.script.Opcodes.CAM_FORCEANGLE;
-import static net.runelite.cache.script.Opcodes.INVOKE;
-import static net.runelite.cache.script.Opcodes.RETURN;
-import static net.runelite.cache.script.RuneLiteOpcodes.RUNELITE_EXECUTE;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSScript;
 import net.runelite.rs.api.RSScriptEvent;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static net.runelite.cache.script.Opcodes.*;
+import static net.runelite.cache.script.RuneLiteOpcodes.RUNELITE_EXECUTE;
 
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
@@ -155,6 +151,11 @@ public abstract class ScriptVMMixin implements RSClient
 	@Replace("runScript")
 	static void copy$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
+//		client.getLogger().info("RS.runScript(): Op: {}", event.getOp());
+//		for(Object obj : event.getArguments()) {
+//			client.getLogger().info("obj ({}) = {}", obj.getClass().getSimpleName(), obj);
+//		}
+
 		Object[] arguments = event.getArguments();
 		assert arguments != null && arguments.length > 0;
 		if (arguments[0] instanceof JavaScriptCallback)

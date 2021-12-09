@@ -1,16 +1,17 @@
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.cert.Certificate;
-import javax.net.ssl.HandshakeCompletedListener;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.ScriptOpcodes;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
+
+import javax.net.ssl.HandshakeCompletedListener;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.security.cert.Certificate;
 
 @ObfuscatedName("k")
 class class12 extends SSLSocket {
@@ -510,7 +511,7 @@ class class12 extends SSLSocket {
 					Login.titlebuttonSprite.drawAt(var16 - 73, var17 - 20); // L: 1234
 					var0.drawCentered("Cancel", var16, var17 + 5, 16777215, 0); // L: 1235
 					var32 = 357; // L: 1236
-					switch(Login.field865) { // L: 1237
+					switch(Login.Login_accountLoggedInResponse) { // L: 1237
 					case 2:
 						UserComparator6.field1340 = "Having trouble logging in?"; // L: 1242
 						break;
@@ -691,7 +692,7 @@ class class12 extends SSLSocket {
 						String var24 = ""; // L: 1427
 						var5 = ""; // L: 1428
 						var6 = ""; // L: 1429
-						switch(Login.field866) { // L: 1430
+						switch(Login.Login_accountBlockedResponse) { // L: 1430
 						case 0:
 							var24 = "Your account has been disabled."; // L: 1445
 							var5 = Strings.field3501; // L: 1446

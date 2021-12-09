@@ -51,6 +51,24 @@ import java.util.Set;
  */
 public interface Client extends GameEngine
 {
+	/**
+	 *
+	 * @return The reason the account was blocked. 0 = ACCOUNT_DISABLED, 1 = ACCOUNT_SUSPECTED_STOLEN
+	 */
+	int getAccountBlockedReason();
+
+	/**
+	 * @return The response the server gave when logging in. 0 = Nothing, 1 = ACCOUNT_INVALID_CREDENTIALS, 2 = ACCOUNT_LOGGED_IN
+	 */
+	int getLoggedInResponse();
+
+	/**
+	 * Disconnects the current player with the given reason. 0 = Disconnect, 1 = Game update.
+	 * @param reason
+	 */
+	void forceDisconnect(int reason);
+
+	void setLoginResponseString(String firstLine, String secondLine, String thirdLine);
 	boolean hasFocus();
 
 	PacketWriter getPacketWriter();
@@ -59,6 +77,7 @@ public interface Client extends GameEngine
 	int getLastMouseY();
 	int getLastMouseButton();
 
+	void sendWidgetMenuAction(int id, int parent, int child, int itemId, String target);
 	void sendMenuAction(int param0, int param1, int action, int objectId, String target, String target2, int mouseX, int mouseY);
 
 	/**
@@ -213,6 +232,7 @@ public interface Client extends GameEngine
 	 * @param password the login screen password
 	 */
 	void setPassword(String password);
+	String getPassword();
 
 	/**
 	 * Sets the 6 digit pin used for authenticator on login screen.
@@ -233,7 +253,8 @@ public interface Client extends GameEngine
 	 *
 	 * @return current login state index
 	 */
-	int getLoginIndex();
+	LoginState getLoginState();
+	void setLoginState(LoginState state);
 
 	/**
 	 * Gets the account type of the logged in player.
@@ -1925,6 +1946,7 @@ public interface Client extends GameEngine
 	 * @param world target world to hop to
 	 */
 	void hopToWorld(World world);
+	void hopToWorld(int world);
 
 	/**
 	 * Sets the RGB color of the skybox

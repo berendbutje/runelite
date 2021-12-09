@@ -3,7 +3,6 @@ package net.runelite.mixins;
 import net.runelite.api.mixins.*;
 import net.runelite.rs.api.*;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
@@ -11,8 +10,18 @@ import java.util.Arrays;
 public abstract class RSPacketWriterMixin implements RSPacketWriter {
     @Override
     @Inject
+    public void sendSubmitAmount(int amount) {
+        RSPacketBuffer buffer = client.getPacketWriter().createPacket(27);
+        buffer.writeInt(amount);
+
+        client.getPacketWriter().sendPacket(buffer);
+    }
+
+    @Override
+    @Inject
     public void sendPacket(RSPacketBuffer buffer) {
         try {
+            client.getPacketWriter().flush();
             client.getPacketWriter().getSocket().write(buffer.getPayload(), 0, buffer.getOffset());
         } catch(Exception e) {
             e.printStackTrace();
@@ -63,12 +72,6 @@ public abstract class RSPacketWriterMixin implements RSPacketWriter {
     @Override
     @Inject
     public void sendClickPacket(int mouseX, int mouseY, long millis, int button) {
-        try {
-            client.getPacketWriter().flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         RSPacketBuffer buffer = client.getPacketWriter().createPacket(61);
 
         int var5 = (int)millis; // L: 3435

@@ -226,7 +226,7 @@ public final class Occluder {
 			switch(var0) { // L: 917
 			case 2:
 				class1.setLoginResponseString(Strings.field3595, Strings.field3634, Strings.field3597); // L: 928
-				class275.method5201(6); // L: 929
+				Login.setLoginIndex(6); // L: 929
 				break; // L: 930
 			case 3:
 				class1.setLoginResponseString("", "Error connecting to server.", ""); // L: 935

@@ -5,4 +5,6 @@ public enum BotState {
     Woodcutting,
     Moving,
     Banking,
+    Smelting,
+    Unknown,
 }

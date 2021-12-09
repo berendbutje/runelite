@@ -42,6 +42,8 @@ import lombok.Getter;
 @Getter
 public enum Varbits
 {
+	CURRENT_TARGET_HEALTH(6099),
+	X_AMOUNT(3960),
 	/*
 	 * If chatbox is transparent or not
 	 */

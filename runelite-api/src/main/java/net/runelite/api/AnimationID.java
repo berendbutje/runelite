@@ -32,6 +32,15 @@ package net.runelite.api;
  */
 public final class AnimationID
 {
+	public static final int ATTACKING_PUNCH = 422;
+	public static final int ATTACKING_KICK = 423;
+
+	public static final int FIGHTING_WEAPON_STAB = 386;
+	public static final int FIGHTING_WEAPON_SLASH = 390;
+
+	public static final int DEFENDING_OFF_HAND_NONE = 388;
+	public static final int DEFENDING_OFF_HAND_SHIELD = 1156;
+
 	public static final int IDLE = -1;
 	public static final int HERBLORE_PESTLE_AND_MORTAR = 364;
 	public static final int WOODCUTTING_BRONZE = 879;

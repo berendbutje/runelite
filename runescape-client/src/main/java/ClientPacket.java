@@ -146,7 +146,7 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2754;
+	public static final ClientPacket SUBMIT_COUNT;
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -272,7 +272,7 @@ public class ClientPacket implements class238 {
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
 	)
-	public static final ClientPacket field2716;
+	public static final ClientPacket KEYDOWN;
 	@ObfuscatedName("bl")
 	@ObfuscatedSignature(
 		descriptor = "Lik;"
@@ -583,7 +583,7 @@ public class ClientPacket implements class238 {
 		field2688 = new ClientPacket(24, 13); // L: 29
 		field2689 = new ClientPacket(25, 8); // L: 30
 		field2715 = new ClientPacket(26, 8); // L: 31
-		field2754 = new ClientPacket(27, 4); // L: 32
+		SUBMIT_COUNT = new ClientPacket(27, 4); // L: 32
 		field2750 = new ClientPacket(28, -1); // L: 33
 		field2758 = new ClientPacket(29, -1); // L: 34
 		field2692 = new ClientPacket(30, 3); // L: 35
@@ -608,7 +608,7 @@ public class ClientPacket implements class238 {
 		field2714 = new ClientPacket(49, 3); // L: 54
 		field2679 = new ClientPacket(50, 4); // L: 55
 		field2763 = new ClientPacket(51, 7); // L: 56
-		field2716 = new ClientPacket(52, -2); // L: 57
+		KEYDOWN = new ClientPacket(52, -2); // L: 57
 		field2717 = new ClientPacket(53, 3); // L: 58
 		field2718 = new ClientPacket(54, 8); // L: 59
 		MAYBE_AFK = new ClientPacket(55, 0); // L: 60

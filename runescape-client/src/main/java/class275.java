@@ -31,14 +31,4 @@ public class class275 {
 		}
 	}
 
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1060488561"
-	)
-	static void method5201(int var0) {
-		if (var0 != Login.loginIndex) { // L: 1621
-			Login.loginIndex = var0; // L: 1622
-		}
-	} // L: 1623
 }

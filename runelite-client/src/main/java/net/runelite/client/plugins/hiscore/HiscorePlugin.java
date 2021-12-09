@@ -26,22 +26,8 @@ package net.runelite.client.plugins.hiscore;
 
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
-import java.awt.image.BufferedImage;
-import java.util.EnumSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.swing.SwingUtilities;
 import lombok.Getter;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.IconID;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.Player;
-import net.runelite.api.WorldType;
+import net.runelite.api.*;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
@@ -60,6 +46,15 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 import net.runelite.http.api.hiscore.HiscoreEndpoint;
 import org.apache.commons.lang3.ArrayUtils;
+
+import javax.annotation.Nullable;
+import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.util.EnumSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @PluginDescriptor(
 	name = "HiScore",

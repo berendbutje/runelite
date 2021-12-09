@@ -22,7 +22,13 @@ public abstract class WorldHoppingMixin implements RSClient
 	@Override
 	public void hopToWorld(World world)
 	{
-		final int worldId = world.getId();
+		hopToWorld(world.getId());
+	}
+
+	@Inject
+	@Override
+	public void hopToWorld(int worldId)
+	{
 		invokeMenuAction("Switch", "<col=ff9040>" + (worldId - 300) + "</col>", 1, MenuAction.CC_OP.getId(), worldId, WidgetInfo.WORLD_SWITCHER_LIST.getId());
 	}
 }

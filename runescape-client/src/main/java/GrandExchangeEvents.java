@@ -78,8 +78,8 @@ public class GrandExchangeEvents {
 		descriptor = "(IIIILjava/lang/String;I)V",
 		garbageValue = "1979542286"
 	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int identifier, int param1, int param0, int itemId, String var4) {
+	@Export("invokeWidgetMenuAction")
+	static void invokeWidgetMenuAction(int identifier, int param1, int param0, int itemId, String var4) {
 		Widget widget = ItemContainer.getWidgetChild(param1, param0); // L: 9156
 		if (widget != null) { // L: 9157
 			if (widget.onOp != null) { // L: 9158

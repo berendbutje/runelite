@@ -25,6 +25,7 @@
 package net.runelite.client.plugins.ggbotv4.plugin;
 
 import net.runelite.api.Client;
+import net.runelite.api.ggbot.BotProfile;
 import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -32,6 +33,8 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 class BotOverlay extends OverlayPanel
 {
@@ -60,13 +63,51 @@ class BotOverlay extends OverlayPanel
 
 		panelComponent.getChildren().add(LineComponent.builder()
 				.left("State: ")
-						.right(plugin.getState().name())
+						.right(plugin.getBot().getState().name())
 				.build());
 
-		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Mouse Idle Ticks: ")
-				.right("" + client.getMouseIdleTicks())
-				.build());
+		BotProfile profile = plugin.getBot().getActiveProfile();
+		if(profile != null) {
+			Duration timePlayed = Duration.between(profile.getLastLogin(), LocalDateTime.now());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Session: ")
+					.right(String.format("%02d:%02d:%02d", timePlayed.toHours(), timePlayed.toMinutesPart(), timePlayed.toSecondsPart()))
+					.build());
+
+			Duration last24hours = Duration.ofSeconds(0);
+			Duration total = Duration.ofSeconds(0);
+			for(LocalDateTime[] session : profile.getSessions()) {
+				assert(session.length == 2);
+
+				LocalDateTime start = session[0];
+				LocalDateTime end = session[1];
+
+				Duration timeBetween = Duration.between(start, LocalDateTime.now());
+				total = total.plus(Duration.between(start, end));
+				if(timeBetween.toHours() > 24) {
+					// Only check last 24 hours.
+					continue;
+				}
+
+				last24hours = last24hours.plus(Duration.between(start, end));
+			}
+
+			last24hours = last24hours.plus(timePlayed);
+			total = total.plus(timePlayed);
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Last 24 hours: ")
+					.right(String.format("%02d:%02d:%02d", last24hours.toHours(), last24hours.toMinutesPart(), last24hours.toSecondsPart()))
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Total: ")
+					.right(String.format("%02d:%02d:%02d", total.toHours(), total.toMinutesPart(), total.toSecondsPart()))
+					.build());
+
+		}
+
 
 		return super.render(graphics);
 	}

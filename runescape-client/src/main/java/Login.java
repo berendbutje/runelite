@@ -1,9 +1,6 @@
+import net.runelite.mapping.*;
+
 import java.text.DecimalFormat;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bc")
 @Implements("Login")
@@ -81,12 +78,14 @@ public class Login {
 	@ObfuscatedGetter(
 		intValue = -363966187
 	)
-	static int field866;
+	@Export("Login_accountBlockedResponse")
+	static int Login_accountBlockedResponse;
 	@ObfuscatedName("au")
 	@ObfuscatedGetter(
 		intValue = 145692399
 	)
-	static int field865;
+	@Export("Login_accountLoggedInResponse")
+	static int Login_accountLoggedInResponse;
 	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
 		intValue = -1403617165
@@ -175,8 +174,8 @@ public class Login {
 		loginBoxX = xPadding + 202; // L: 58
 		Login_loadingPercent = 10;
 		Login_loadingText = "";
-		field866 = -1; // L: 79
-		field865 = 1; // L: 82
+		Login_accountBlockedResponse = -1; // L: 79
+		Login_accountLoggedInResponse = 1; // L: 82
 		loginIndex = 0; // L: 86
 		Login_response0 = ""; // L: 87
 		Login_response1 = ""; // L: 88
@@ -251,4 +250,16 @@ public class Login {
 			ArchiveDiskActionHandler.field3662 = 600; // L: 66
 		}
 	} // L: 68
+
+    @ObfuscatedName("l")
+    @ObfuscatedSignature(
+        descriptor = "(II)V",
+        garbageValue = "1060488561"
+    )
+    @Export("Login_setLoginIndex")
+    static void setLoginIndex(int var0) {
+        if (var0 != loginIndex) { // L: 1621
+            loginIndex = var0; // L: 1622
+        }
+    } // L: 1623
 }

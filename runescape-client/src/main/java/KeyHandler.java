@@ -58,7 +58,7 @@ public final class KeyHandler implements KeyListener, FocusListener {
 	@ObfuscatedGetter(
 		intValue = -1596071901
 	)
-	public static int field110;
+	public static int KeyHandler_keyDownCount;
 	@ObfuscatedName("cf")
 	public static int[] field127;
 	@ObfuscatedName("cm")
@@ -102,7 +102,7 @@ public final class KeyHandler implements KeyListener, FocusListener {
 		field112 = new char[128]; // L: 109
 		field124 = new int[128]; // L: 110
 		field125 = new int[128]; // L: 111
-		field110 = 0; // L: 112
+		KeyHandler_keyDownCount = 0; // L: 112
 		field127 = new int[128]; // L: 113
 		field135 = 0; // L: 114
 		field107 = 0; // L: 115

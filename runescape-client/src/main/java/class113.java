@@ -1,11 +1,12 @@
+import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dp")
 public class class113 extends class116 {
@@ -92,14 +93,14 @@ public class class113 extends class116 {
 	static void method2529(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
 		if (Login.clearLoginScreen) { // L: 148
 			if (var3 == 4) { // L: 149
-				class275.method5201(4); // L: 150
+				Login.setLoginIndex(4); // L: 150
 			}
 
 		} else {
 			if (var3 == 0) { // L: 154
 				EnumComposition.method3097(var2); // L: 155
 			} else {
-				class275.method5201(var3); // L: 158
+				Login.setLoginIndex(var3); // L: 158
 			}
 
 			Rasterizer2D.Rasterizer2D_clear(); // L: 160

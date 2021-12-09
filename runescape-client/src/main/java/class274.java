@@ -45,8 +45,9 @@ public final class class274 {
 		descriptor = "(Lop;II)V",
 		garbageValue = "2095914687"
 	)
-	static void method5198(Buffer var0, int var1) {
-		MilliClock.method2954(var0.array, var1); // L: 11985
+	@Export("writeRandomDat")
+	static void writeRandomDat(Buffer var0, int var1) {
+		MilliClock.instantiateRandomDat(var0.array, var1); // L: 11985
 		if (JagexCache.JagexCache_randomDat != null) { // L: 11987
 			try {
 				JagexCache.JagexCache_randomDat.seek(0L); // L: 11989

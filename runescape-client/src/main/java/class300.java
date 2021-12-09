@@ -1,10 +1,11 @@
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 
 @ObfuscatedName("kv")
 public class class300 {
@@ -376,7 +377,7 @@ public class class300 {
 		}
 
 		UserComparator6.method2508(JagexCache.cacheDir); // L: 175
-		WorldMapData_1.method3844(); // L: 176
+		WorldMapData_1.createRandomDat(); // L: 176
 		JagexCache.JagexCache_dat2File = new BufferedFile(new AccessFile(TriBool.getFile("main_file_cache.dat2"), "rw", 1048576000L), 5200, 0); // L: 177
 		JagexCache.JagexCache_idx255File = new BufferedFile(new AccessFile(TriBool.getFile("main_file_cache.idx255"), "rw", 1048576L), 6000, 0); // L: 178
 		WorldMapID.JagexCache_idxFiles = new BufferedFile[ItemContainer.idxCount]; // L: 179

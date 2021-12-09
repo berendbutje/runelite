@@ -36,6 +36,8 @@ package net.runelite.api.widgets;
  */
 public final class WidgetID
 {
+	public static final int CRAFTING_SMELT = 446;
+
 	public static final int FAIRY_RING_PANEL_GROUP_ID = 381;
 	public static final int FAIRY_RING_GROUP_ID = 398;
 	public static final int LOGOUT_PANEL_ID = 182;
